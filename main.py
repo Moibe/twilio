@@ -36,6 +36,9 @@ def enviar_mensaje(req: MensajeRequest):
     try:
         # Asegurarnos de que el número tenga el formato de WhatsApp de Twilio
         numero_destino = req.numero
+        # Agregar el código de país si no está presente
+        if not numero_destino.startswith("+"):
+            numero_destino = f"+52{numero_destino}"
         if not numero_destino.startswith("whatsapp:"):
             numero_destino = f"whatsapp:{numero_destino}"
 
